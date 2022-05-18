@@ -7,8 +7,12 @@
       @drop="onDrop($event)"
       @dragover.prevent
       @dragenter.prevent
+      :style="{
+        'font-family': projectFont,
+      }"
     >
       <div class="playground-wrapper" v-if="hasSections">
+        <ProdMenu />
         <draggable
           :list="sections"
           :disabled="!enabled"
@@ -23,6 +27,7 @@
               <Resize :section="element">
                 <component
                   :is="element.componentName"
+                  isInBuilder
                   :section="element"
                 ></component>
               </Resize>
@@ -39,7 +44,8 @@
 import draggable from "vuedraggable";
 import { uuid } from "vue-uuid";
 
-import initialAttributes from "../../utils/initialAttributes";
+import { ProdMenu } from "@/components/common";
+import initialAttributes from "@/utils/initialAttributes";
 
 import Resize from "./Resize";
 import Sidebar from "./Sidebar";
@@ -51,6 +57,7 @@ export default {
   order: 0,
   components: {
     draggable,
+    ProdMenu,
     Resize,
     Sidebar,
     TopBar,
@@ -62,6 +69,9 @@ export default {
     };
   },
   computed: {
+    projectFont() {
+      return this.$store.getters.getProjectFont;
+    },
     sections() {
       return this.$store.getters.getJson;
     },
@@ -77,10 +87,11 @@ export default {
     onDrop(evt) {
       const componentLabel = evt.dataTransfer.getData("componentLabel");
 
+      this.$store.dispatch("setDraggedOverComponent", null);
+
       if (!componentLabel) {
         return;
       }
-
       const dropEl = evt.target;
       const items = [...this.sections];
       const index = items.findIndex((section) => section.id === dropEl.id);
@@ -100,6 +111,7 @@ export default {
       }
 
       this.$store.dispatch("updateJson", items);
+      this.$store.dispatch("selectComponent", newChild);
     },
   },
 };
@@ -118,7 +130,7 @@ export default {
   align-items: center;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: calc(100vh - 270px);
   overflow: scroll;
   padding-bottom: 200px;
   position: relative;
@@ -135,7 +147,7 @@ export default {
   display: flex;
   height: 100%;
   justify-content: center;
-  width: 100%;
+  width: calc(100vw - 250px);
 }
 
 .drag-el {

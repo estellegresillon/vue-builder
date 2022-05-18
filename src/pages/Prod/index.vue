@@ -1,27 +1,40 @@
 <template>
-  <header>
-    <nav>
-      <h1>Prod</h1>
-      <h1>
-        <router-link to="/">Go back</router-link>
-      </h1>
-    </nav>
-  </header>
-  <div class="prod-wrapper">
+  <div
+    class="prod-wrapper"
+    :style="{
+      'font-family': projectFont,
+    }"
+  >
+    <ProdMenu />
     <div v-if="hasSections">
       <div v-for="section in sections" :key="section.id">
-        <component :is="section.componentName" :section="section"></component>
+        <component
+          :is="section.componentName"
+          :isInBuilder="false"
+          :section="section"
+        ></component>
       </div>
     </div>
     <h3 v-else>Create your page in the builder.</h3>
+    <GoBackButton />
   </div>
 </template>
 
 <script>
+import { ProdMenu } from "@/components/common";
 import { getDocumentFromLocalStorage } from "@/utils/localStorage";
 
+import GoBackButton from "./GoBackButton";
+
 export default {
+  components: {
+    GoBackButton,
+    ProdMenu,
+  },
   computed: {
+    projectFont() {
+      return this.$store.getters.getProjectFont;
+    },
     sections() {
       return getDocumentFromLocalStorage();
     },

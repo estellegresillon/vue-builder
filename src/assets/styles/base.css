@@ -1,0 +1,70 @@
+@font-face {
+  font-family: "Agenda";
+  src: local("Agenda"), url(../fonts/agenda-bold.ttf) format("woff");
+}
+
+@font-face {
+  font-family: "Austin";
+  src: local("Austin"), url(../fonts/austin.ttf) format("woff");
+}
+
+@font-face {
+  font-family: "Bluu";
+  src: local("Bluu"), url(../fonts/BluuNext-Bold.otf) format("woff");
+}
+
+@font-face {
+  font-family: "Circular";
+  src: local("Circular"), url(../fonts/CircularStd-Bold.ttf) format("woff");
+}
+
+@font-face {
+  font-family: "Futura";
+  src: local("Futura"), url(../fonts/FuturaPT-Medium.ttf) format("woff");
+}
+
+@font-face {
+  font-family: "Gilroy";
+  font-weight: normal;
+  src: local("Gilroy"), url(../fonts/Gilroy-Light.otf) format("woff");
+}
+
+@font-face {
+  font-family: "Gilroy";
+  font-weight: bold;
+  src: local("Gilroy"), url(../fonts/Gilroy-ExtraBold.otf) format("woff");
+}
+
+@font-face {
+  font-family: "Recife";
+  src: local("Recife"),
+    url(../fonts/RecifeDisplayWeb-Regular.ttf) format("woff");
+}
+
+body {
+  margin: 0;
+  font-family: "Gilroy", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 14px;
+  min-height: 100vh;
+  position: relative;
+  width: 100%;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+h1,
+p {
+  margin: 0;
+}

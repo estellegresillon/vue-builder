@@ -8,9 +8,9 @@ export const getDocumentFromLocalStorage = () => {
 };
 
 export const saveDataInLocalStorage = (key, value) => {
-  localStorage.setItem(`${key}-page-builder`, value);
+  localStorage.setItem(key, value);
 };
 
 export const getDataFromLocalStorage = (key) => {
-  return localStorage.getItem(`${key}-page-builder`);
+  return localStorage.getItem(key);
 };

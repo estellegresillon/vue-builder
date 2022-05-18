@@ -14,8 +14,20 @@ export default {
   selectComponent(state, component) {
     state.selectedComponent = component;
   },
+  setDraggedOverComponent(state, component) {
+    state.draggedOverComponent = component;
+  },
   setJson(state, payload) {
     state.json = payload.json;
+  },
+  setProjectFont(state, payload) {
+    state.projectFont = payload;
+  },
+  setProjectName(state, payload) {
+    state.projectName = payload;
+  },
+  setTransparentMenu(state, payload) {
+    state.transparentMenu = payload;
   },
   updateAttributes(state, payload) {
     const { id, attributes } = payload;

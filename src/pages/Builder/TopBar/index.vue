@@ -1,55 +1,75 @@
 <template>
-  <header>
-    <nav>
-      <div>TopBar</div>
-      <div>
-        <router-link to="/prod">Prod</router-link>
-      </div>
-      <div @click="saveJson">Save</div>
-      <div @click="resetJson">Start over</div>
-    </nav>
-  </header>
+  <TopBarWrapper>
+    <div class="routes">
+      <Item>
+        <router-link to="/">
+          <strong>Page Builder</strong>
+          <span class="demo-tag">demo</span>
+        </router-link>
+      </Item>
+      <Item @click="saveJson">
+        <span class="mobile-link"> Mobile </span> /
+        <router-link class="desktop-link" to="/prod">
+          Live preview
+        </router-link>
+      </Item>
+    </div>
+    <div class="actions">
+      <Item class="action-button" @click="showModal"
+        ><IconSettings /> Customize
+      </Item>
+      <ProjectModal v-if="isModalOpened" :onClose="closeModal" />
+      <Item class="action-button" @click="saveJson"><IconSave /> Save </Item>
+      <Item class="action-button" @click="resetJson"
+        ><IconClean /> Start over
+      </Item>
+    </div>
+  </TopBarWrapper>
 </template>
 
 <script>
+import {
+  IconClean,
+  IconSave,
+  IconSettings,
+  ProjectModal,
+} from "@/components/common";
 import { saveDocumentInLocalStorage } from "@/utils/localStorage";
 
+import { Item, TopBarWrapper } from "./style";
+
 export default {
+  components: {
+    IconClean,
+    IconSave,
+    IconSettings,
+    Item,
+    ProjectModal,
+    TopBarWrapper,
+  },
+  data() {
+    return {
+      isModalOpened: false,
+    };
+  },
   computed: {
     json() {
       return this.$store.getters.getJson;
     },
   },
   methods: {
+    closeModal() {
+      this.isModalOpened = false;
+    },
     resetJson() {
       this.$store.dispatch("resetJson");
     },
     saveJson() {
       saveDocumentInLocalStorage(this.json);
     },
+    showModal() {
+      this.isModalOpened = true;
+    },
   },
 };
 </script>
-
-<style scoped>
-header {
-  align-items: center;
-  background-color: #252628;
-  box-shadow: 0 1px 30px 0 rgb(0 0 0 / 30%);
-  color: white;
-  display: flex;
-  height: 70px;
-  padding: 0 20px;
-  position: relative;
-  width: 100%;
-  z-index: 2;
-}
-
-nav {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  margin: auto;
-  width: 100%;
-}
-</style>

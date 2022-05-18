@@ -1,12 +1,18 @@
 <template>
   <div class="actions-wrapper">
-    <div @click.stop="removeComponent">R</div>
-    <div @click.stop="handleSelect">S</div>
+    <div class="action-item" @click.stop="removeComponent"><IconRemove /></div>
+    <div class="action-item" @click.stop="handleSelect"><IconSettings /></div>
   </div>
 </template>
 
 <script>
+import { IconRemove, IconSettings } from "@/components/common";
+
 export default {
+  components: {
+    IconRemove,
+    IconSettings,
+  },
   props: {
     section: {
       type: Object,
@@ -28,6 +34,7 @@ export default {
   align-items: center;
   background-color: #d40c0c;
   border-radius: 3px;
+  cursor: pointer;
   display: flex;
   height: auto;
   flex-direction: column;
@@ -41,13 +48,18 @@ export default {
   z-index: 1000;
 }
 
-.actions-wrapper div {
-  color: white;
-  cursor: pointer;
+.action-item {
   margin-bottom: 14px;
 }
 
-.actions-wrapper:last-child {
+.action-item:last-child {
   margin-bottom: 0px;
+}
+
+svg {
+  color: white;
+  cursor: pointer;
+  height: 17px;
+  width: 17px;
 }
 </style>
