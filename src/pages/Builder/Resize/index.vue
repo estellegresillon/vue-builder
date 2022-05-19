@@ -45,7 +45,7 @@ export default defineComponent({
   data() {
     return {
       hover: false,
-      initialPos: "",
+      initialPos: null as number | null,
       initialSize: null as number | null,
     };
   },
@@ -71,14 +71,13 @@ export default defineComponent({
     },
   },
   methods: {
-    dragging(e: { clientY: string }) {
+    dragging(e: { clientY: number }) {
       const resizable = this.$refs.refContainer as HTMLFormElement;
 
       if (this.initialSize && this.initialPos) {
-        console.log(e, resizable, "hello");
-        // resizable.style.height = `${
-        //   this.initialSize + e.clientY - this.initialPos
-        // }px`;
+        resizable.style.height = `${
+          this.initialSize + e.clientY - this.initialPos
+        }px`;
       }
     },
     onDragEnd() {
@@ -97,7 +96,7 @@ export default defineComponent({
         this.$store.dispatch("setDraggedOverComponent", selectedItem.id);
       }
     },
-    onDragStart(e: { clientY: string; dataTransfer: DataTransfer }) {
+    onDragStart(e: { clientY: number; dataTransfer: DataTransfer }) {
       if (!this.dragImage) {
         return;
       }
