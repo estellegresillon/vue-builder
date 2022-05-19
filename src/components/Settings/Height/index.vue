@@ -6,8 +6,8 @@
         :name="attribute"
         :onChange="updateHeight"
         placeholder="300"
-        :value="heightAttribute"
         type="number"
+        :value="heightAttribute"
       />
     </div>
   </div>

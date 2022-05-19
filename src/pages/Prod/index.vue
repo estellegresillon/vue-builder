@@ -75,4 +75,12 @@ nav {
   position: relative;
   width: 100%;
 }
+
+h3 {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  width: 100%;
+}
 </style>

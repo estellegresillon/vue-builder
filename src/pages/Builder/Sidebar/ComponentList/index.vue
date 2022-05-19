@@ -44,13 +44,13 @@ export default {
 }
 
 .list-item {
+  border: 1px solid gray;
   border-radius: 2px;
   cursor: grab;
   font-weight: bolder;
   margin: 5px 10px;
   padding: 30px;
   text-align: center;
-  border: 1px solid gray;
 }
 
 .list-item:hover {

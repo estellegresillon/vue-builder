@@ -3,10 +3,10 @@
     ><div class="attribute-value">
       <label :htmlFor="settingName">{{ settingName }}</label>
       <input
-        :id="settingName"
         @change="updateValue"
-        type="checkbox"
         :checked="selectedComponent.attributes[attribute]"
+        :id="settingName"
+        type="checkbox"
       /></div
   ></CheckboxWrapper>
 </template>

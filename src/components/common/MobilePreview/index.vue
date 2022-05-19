@@ -1,5 +1,5 @@
 <template>
-  <div class="overlay" @click.prevent="onClose">
+  <div class="overlay" @click="onClose">
     <div class="mobile-preview-wrapper" id="mobile-wrapper">
       <Prod />
     </div>

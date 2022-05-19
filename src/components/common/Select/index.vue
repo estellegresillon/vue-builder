@@ -1,6 +1,6 @@
 <template>
   <div class="select-wrapper">
-    <select @change="onChange" :name="name" :id="name" :value="value">
+    <select @change="onChange" :id="name" :name="name" :value="value">
       <option value="">{{ placeholder }}</option>
       <option v-for="option in options" :key="option" :value="option">
         {{ option }}
@@ -42,8 +42,8 @@ select {
   border: none;
   border-radius: 5px;
   box-shadow: 0 1px 10px 0 rgb(0 0 0 / 50%);
-  cursor: pointer;
   color: #ffffff;
+  cursor: pointer;
   font-family: Gilroy;
   height: 38px;
   margin-bottom: 10px;

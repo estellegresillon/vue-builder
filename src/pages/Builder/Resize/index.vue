@@ -3,23 +3,23 @@
     class="resize-wrapper"
     :class="{ isSelected: displayActions }"
     @click="selectComponent"
-    :style="{ 'min-height': section.attributes?.height + 'px' }"
     :id="section.id"
+    @dragleave="onDragLeave"
+    @dragover="onDragOver"
     @mouseover="hover = true"
     @mouseleave="hover = false"
-    @dragover="onDragOver"
-    @dragleave="onDragLeave"
     ref="refContainer"
+    :style="{ 'min-height': section.attributes?.height + 'px' }"
   >
     <Actions v-if="displayActions" :section="section" />
     <slot></slot>
     <div
       v-if="isResizable && displayActions"
-      draggable="true"
       class="resize-handler"
+      draggable="true"
       @drag="dragging"
-      @dragstart.stop="onDragStart"
       @dragend="onDragEnd"
+      @dragstart.stop="onDragStart"
     />
     <div v-if="draggedOverComponent === section.id" class="drop-placeholder" />
   </div>
@@ -40,16 +40,16 @@ export default {
   data() {
     return {
       hover: false,
-      initialSize: "",
       initialPos: "",
+      initialSize: "",
     };
   },
   computed: {
-    draggedOverComponent() {
-      return this.$store.getters.getDraggedOverComponent;
-    },
     displayActions() {
       return this.hover || this.selectedComponent?.id === this.section.id;
+    },
+    draggedOverComponent() {
+      return this.$store.getters.getDraggedOverComponent;
     },
     dragImage() {
       const dragImg = new Image(0, 0);
@@ -66,20 +66,6 @@ export default {
     },
   },
   methods: {
-    onDragStart(e) {
-      if (!this.dragImage) {
-        return;
-      }
-
-      e.dataTransfer.setDragImage(this.dragImage, 0, 0);
-
-      e.dataTransfer.dropEffect = "move";
-      e.dataTransfer.effectAllowed = "move";
-      const resizable = this.$refs.refContainer;
-
-      this.initialPos = e.clientY;
-      this.initialSize = resizable.offsetHeight;
-    },
     dragging(e) {
       const resizable = this.$refs.refContainer;
 
@@ -94,14 +80,28 @@ export default {
       const height = this.$refs.refContainer.style.height.slice(0, -2);
       this.$store.dispatch("updateAttributes", { id, attributes: { height } });
     },
+    onDragLeave() {
+      this.$store.dispatch("setDraggedOverComponent", null);
+    },
     onDragOver(e) {
       if (!this.selectedComponent) {
         const selectedItem = e.target;
         this.$store.dispatch("setDraggedOverComponent", selectedItem.id);
       }
     },
-    onDragLeave() {
-      this.$store.dispatch("setDraggedOverComponent", null);
+    onDragStart(e) {
+      if (!this.dragImage) {
+        return;
+      }
+
+      e.dataTransfer.setDragImage(this.dragImage, 0, 0);
+
+      e.dataTransfer.dropEffect = "move";
+      e.dataTransfer.effectAllowed = "move";
+      const resizable = this.$refs.refContainer;
+
+      this.initialPos = e.clientY;
+      this.initialSize = resizable.offsetHeight;
     },
     selectComponent() {
       this.$store.dispatch("selectComponent", this.section);

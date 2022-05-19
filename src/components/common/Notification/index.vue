@@ -24,6 +24,7 @@ export default {
   padding: 20px 30px;
   position: fixed;
   right: 20px;
+  z-index: 10;
 }
 
 @keyframes fadeInOut {

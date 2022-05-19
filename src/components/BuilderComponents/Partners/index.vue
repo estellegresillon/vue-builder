@@ -6,13 +6,13 @@
   >
     <div
       v-for="partner in partnersArray"
-      :key="partner"
       class="image-wrapper"
+      :key="partner"
       :style="{
         width: `calc(100% / ${section.attributes.itemCount})`,
       }"
     >
-      <img :src="require(`@/assets/builder/${partner}.png`)" :alt="partner" />
+      <img :alt="partner" :src="require(`@/assets/builder/${partner}.png`)" />
     </div>
   </PartnersWrapper>
 </template>

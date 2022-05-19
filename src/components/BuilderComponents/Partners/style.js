@@ -2,8 +2,8 @@ import styled from "vue3-styled-components";
 
 export const PartnersWrapper = styled.div`
   display: flex;
-  min-height: ${({ section }) => `${section.attributes.height}px`};
   justify-content: space-evenly;
+  min-height: ${({ section }) => `${section.attributes.height}px`};
   opacity: 0.3;
   padding: 0 10%;
   pointer-events: ${({ isInBuilder }) => (isInBuilder ? "none" : "")};

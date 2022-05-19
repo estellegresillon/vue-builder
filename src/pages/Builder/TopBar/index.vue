@@ -8,9 +8,7 @@
         </router-link>
       </Item>
       <Item @click="saveJson">
-        <span class="mobile-link" @click.stop="showMobilePreview">
-          Mobile
-        </span>
+        <span class="mobile-link" @click="showMobilePreview"> Mobile </span>
         /
         <router-link class="desktop-link" to="/prod">
           Live preview
@@ -28,6 +26,7 @@
       </Item>
     </div>
   </TopBarWrapper>
+  <Notification v-if="isSaved" text="Successfully saved !" />
   <MobilePreview v-if="isMobilePreviewOpened" :onClose="hideMobilePreview" />
 </template>
 
@@ -37,6 +36,7 @@ import {
   IconSave,
   IconSettings,
   MobilePreview,
+  Notification,
   ProjectModal,
 } from "@/components/common";
 import { saveDocumentInLocalStorage } from "@/utils/localStorage";
@@ -50,13 +50,16 @@ export default {
     IconSettings,
     Item,
     MobilePreview,
+    Notification,
     ProjectModal,
     TopBarWrapper,
   },
   data() {
     return {
-      isProjectModalOpened: false,
       isMobilePreviewOpened: false,
+      isProjectModalOpened: false,
+      isSaved: false,
+      timer: null,
     };
   },
   computed: {
@@ -68,10 +71,14 @@ export default {
     closeProjectModal() {
       this.isProjectModalOpened = false;
     },
+    hideMobilePreview() {
+      this.isMobilePreviewOpened = false;
+    },
     resetJson() {
       this.$store.dispatch("resetJson");
     },
     saveJson() {
+      this.startTimer();
       saveDocumentInLocalStorage(this.json);
     },
     showMobilePreview() {
@@ -80,9 +87,20 @@ export default {
     showProjectModal() {
       this.isProjectModalOpened = true;
     },
-    hideMobilePreview() {
-      this.isMobilePreviewOpened = false;
+    startTimer() {
+      if (this.isSaved === true) {
+        return;
+      }
+
+      this.isSaved = true;
+
+      this.timer = setTimeout(() => {
+        this.isSaved = false;
+      }, 4000);
     },
+  },
+  unmounted() {
+    clearTimeout(this.timer);
   },
 };
 </script>

@@ -13,14 +13,17 @@
           :selectedComponent="selectedComponent"
         />
       </div>
+      <div v-if="checkboxSettings.includes(attribute)">
+        <Checkbox
+          :attribute="attribute"
+          :selectedComponent="selectedComponent"
+        />
+      </div>
       <div v-if="colorSettings.includes(attribute)">
         <Color :attribute="attribute" :selectedComponent="selectedComponent" />
       </div>
       <div v-if="attribute === 'height'">
         <Height :attribute="attribute" :selectedComponent="selectedComponent" />
-      </div>
-      <div v-if="textSettings.includes(attribute)">
-        <Text :attribute="attribute" :selectedComponent="selectedComponent" />
       </div>
       <div v-if="numberSettings.includes(attribute)">
         <SelectNumber
@@ -28,17 +31,15 @@
           :selectedComponent="selectedComponent"
         />
       </div>
-      <div v-if="checkboxSettings.includes(attribute)">
-        <Checkbox
-          :attribute="attribute"
-          :selectedComponent="selectedComponent"
-        />
+      <div v-if="textSettings.includes(attribute)">
+        <Text :attribute="attribute" :selectedComponent="selectedComponent" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { IconBack } from "@/components/common";
 import {
   Alignment,
   Checkbox,
@@ -47,7 +48,6 @@ import {
   SelectNumber,
   Text,
 } from "@/components/Settings";
-import { IconBack } from "@/components/common";
 
 import {
   CHECKBOX_SETTINGS,
@@ -58,15 +58,13 @@ import {
 
 export default {
   components: {
-    // components
     Alignment,
     Checkbox,
     Color,
     Height,
+    IconBack,
     SelectNumber,
     Text,
-    // icons
-    IconBack,
   },
   props: {
     selectedComponent: {

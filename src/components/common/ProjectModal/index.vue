@@ -6,10 +6,10 @@
     <div class="menu-style">
       <label htmlFor="menu">Light Menu</label>
       <input
-        id="menu"
         @change="updateTransparentMenu"
-        type="checkbox"
         :checked="transparentMenu === 'true'"
+        id="menu"
+        type="checkbox"
       />
     </div>
     <Select
@@ -30,10 +30,11 @@
 </template>
 
 <script>
+import { saveDataInLocalStorage } from "@/utils/localStorage";
+
 import IconClose from "../Icons/IconClose.vue";
 import Input from "../Input";
 import Select from "../Select";
-import { saveDataInLocalStorage } from "@/utils/localStorage";
 
 export default {
   components: {

@@ -15,8 +15,8 @@
       <div class="contact-links">
         <a
           :href="`mailto:${section.attributes.mail}`"
-          target="_blank"
           rel="noopener noreferrer"
+          target="_blank"
           v-if="section.attributes.mail"
           :style="{
             color: section.attributes.textColor,
@@ -26,8 +26,8 @@
         </a>
         <a
           :href="section.attributes.linkedIn"
-          target="_blank"
           rel="noopener noreferrer"
+          target="_blank"
           v-if="section.attributes.linkedIn"
           :style="{
             color: section.attributes.textColor,
@@ -37,8 +37,8 @@
         </a>
         <a
           :href="section.attributes.instagram"
-          target="_blank"
           rel="noopener noreferrer"
+          target="_blank"
           v-if="section.attributes.instagram"
           :style="{
             color: section.attributes.textColor,
@@ -48,8 +48,8 @@
         </a>
         <a
           :href="section.attributes.dribbble"
-          target="_blank"
           rel="noopener noreferrer"
+          target="_blank"
           v-if="section.attributes.dribbble"
           :style="{
             color: section.attributes.textColor,
@@ -59,8 +59,8 @@
         </a>
         <a
           :href="section.attributes.other"
-          target="_blank"
           rel="noopener noreferrer"
+          target="_blank"
           v-if="section.attributes.other"
           :style="{
             color: section.attributes.textColor,

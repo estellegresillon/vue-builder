@@ -52,9 +52,9 @@ export const HeroWrapper = styled.div`
 
     .content {
       align-items: center;
-      height: 536px;
       display: flex;
       flex-direction: column;
+      height: 536px;
       justify-content: center;
     }
   }

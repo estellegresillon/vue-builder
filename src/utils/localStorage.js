@@ -1,5 +1,5 @@
-export const saveDocumentInLocalStorage = (json) => {
-  localStorage.setItem("builderJson", JSON.stringify(json));
+export const getDataFromLocalStorage = (key) => {
+  return localStorage.getItem(key);
 };
 
 export const getDocumentFromLocalStorage = () => {
@@ -11,6 +11,6 @@ export const saveDataInLocalStorage = (key, value) => {
   localStorage.setItem(key, value);
 };
 
-export const getDataFromLocalStorage = (key) => {
-  return localStorage.getItem(key);
+export const saveDocumentInLocalStorage = (json) => {
+  localStorage.setItem("builderJson", JSON.stringify(json));
 };

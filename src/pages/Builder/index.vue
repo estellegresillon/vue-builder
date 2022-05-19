@@ -41,8 +41,8 @@
 </template>
 
 <script>
-import draggable from "vuedraggable";
 import { uuid } from "vue-uuid";
+import draggable from "vuedraggable";
 
 import { ProdMenu } from "@/components/common";
 import initialAttributes from "@/utils/initialAttributes";
@@ -52,9 +52,6 @@ import Sidebar from "./Sidebar";
 import TopBar from "./TopBar";
 
 export default {
-  name: "simple",
-  display: "Simple",
-  order: 0,
   components: {
     draggable,
     ProdMenu,
@@ -69,14 +66,14 @@ export default {
     };
   },
   computed: {
+    hasSections() {
+      return this.$store.getters.getJson.length > 0;
+    },
     projectFont() {
       return this.$store.getters.getProjectFont;
     },
     sections() {
       return this.$store.getters.getJson;
-    },
-    hasSections() {
-      return this.$store.getters.getJson.length > 0;
     },
   },
   methods: {
@@ -156,8 +153,8 @@ export default {
 }
 
 .ghost {
-  opacity: 0.5;
   background: #c8ebfb;
+  opacity: 0.5;
 }
 
 .not-draggable {

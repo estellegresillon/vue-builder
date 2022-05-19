@@ -19,9 +19,9 @@ export const SectionWrapper = styled.div`
   }
 
   @media screen and (max-width: 768px) {
-    flex-wrap: nowrap;
     flex-direction: ${({ section }) =>
       section.attributes.reversed ? "column-reverse" : "column"};
+    flex-wrap: nowrap;
     height: auto;
 
     img {
@@ -31,9 +31,9 @@ export const SectionWrapper = styled.div`
   }
 
   body#force-mobile & {
-    flex-wrap: nowrap;
     flex-direction: ${({ section }) =>
       section.attributes.reversed ? "column-reverse" : "column"};
+    flex-wrap: nowrap;
     height: auto;
 
     img {
@@ -52,10 +52,10 @@ export const SectionContent = styled.div`
   height: 80%;
   justify-content: ${({ section }) =>
     section.attributes.alignment?.justifyContent};
+  margin: 20% 10%;
   text-align: ${({ section }) =>
     getTextAlign(section.attributes.alignment?.alignItems)};
   width: 80%;
-  margin: 20% 10%;
 
   h3 {
     font-size: 36px;

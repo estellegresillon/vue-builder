@@ -5,11 +5,11 @@
     :section="section"
   >
     <img
-      v-for="image in imagesArray"
-      :key="image"
-      :class="`img-${section.attributes.columns}-col`"
-      :src="require(`@/assets/builder/${image}.jpg`)"
       :alt="image"
+      :class="`img-${section.attributes.columns}-col`"
+      :key="image"
+      :src="require(`@/assets/builder/${image}.jpg`)"
+      v-for="image in imagesArray"
     />
   </GalleryWrapper>
 </template>

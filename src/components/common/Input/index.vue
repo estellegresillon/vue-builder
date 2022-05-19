@@ -1,8 +1,8 @@
 <template>
   <div class="input-wrapper">
     <input
-      :name="name"
       @input="onChange"
+      :name="name"
       :placeholder="placeholder"
       :type="type"
       :value="value"

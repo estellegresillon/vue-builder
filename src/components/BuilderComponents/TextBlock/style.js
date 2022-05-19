@@ -17,10 +17,10 @@ export const TextBlockContent = styled.div`
   flex-direction: column;
   justify-content: ${({ section }) =>
     section.attributes.alignment?.justifyContent};
+  margin: 5% 10%;
   text-align: ${({ section }) =>
     getTextAlign(section.attributes.alignment?.alignItems)};
   width: 80%;
-  margin: 5% 10%;
 
   h2 {
     font-size: 48px;

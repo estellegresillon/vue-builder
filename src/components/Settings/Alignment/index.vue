@@ -22,8 +22,8 @@ import { AlignmentWrapper, CircleWrapper } from "./style";
 export default {
   data() {
     return {
-      alignments: ["flex-start", "center", "flex-end"],
       alignItems: this.selectedComponent.attributes.alignment.alignItems,
+      alignments: ["flex-start", "center", "flex-end"],
       justifyContent:
         this.selectedComponent.attributes.alignment.justifyContent,
     };

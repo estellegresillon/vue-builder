@@ -19,11 +19,11 @@ export default {
     },
   },
   methods: {
-    removeComponent() {
-      this.$store.dispatch("removeComponent", this.section.id);
-    },
     handleSelect() {
       this.$store.dispatch("selectComponent", this.section);
+    },
+    removeComponent() {
+      this.$store.dispatch("removeComponent", this.section.id);
     },
   },
 };

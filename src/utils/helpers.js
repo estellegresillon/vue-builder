@@ -1,17 +1,3 @@
-export const getTextAlign = (alignment) => {
-  if (!alignment) return;
-
-  if (alignment === "flex-start") {
-    return "left";
-  }
-
-  if (alignment === "flex-end") {
-    return "right";
-  }
-
-  return "center";
-};
-
 export const getItemHeight = (columnCount) => {
   if (!columnCount) return;
 
@@ -44,4 +30,18 @@ export const getItemWidth = (columnCount) => {
     case "5":
       return "20%";
   }
+};
+
+export const getTextAlign = (alignment) => {
+  if (!alignment) return;
+
+  if (alignment === "flex-start") {
+    return "left";
+  }
+
+  if (alignment === "flex-end") {
+    return "right";
+  }
+
+  return "center";
 };

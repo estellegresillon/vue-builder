@@ -5,12 +5,12 @@
   <div class="attribute-value">
     <div
       class="color-circle"
-      :color="selectedComponent.attributes[attribute]"
-      v-click-outside="hidePicker"
       @click="showPicker"
+      :color="selectedComponent.attributes[attribute]"
       :style="{
         'background-color': selectedComponent.attributes[attribute],
       }"
+      v-click-outside="hidePicker"
     />
     <div class="picker-wrapper" v-show="isPickerOpened">
       <Chrome :modelValue="color" @update:modelValue="updateColor" />
@@ -51,12 +51,11 @@ export default {
     },
   },
   methods: {
-    showPicker() {
-      this.isPickerOpened = true;
-    },
-
     hidePicker() {
       this.isPickerOpened = false;
+    },
+    showPicker() {
+      this.isPickerOpened = true;
     },
     updateColor(e) {
       const newAttr = { [this.attribute]: e.hex };
