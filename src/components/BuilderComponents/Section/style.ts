@@ -1,14 +1,19 @@
+import type { PropType } from "vue";
 import styled from "vue3-styled-components";
 
+import { ISection } from "@/types";
 import { getTextAlign } from "@/utils/helpers";
 
-export const SectionWrapper = styled.div`
+const props = { section: Object as PropType<ISection>, isInBuilder: Boolean };
+
+export const SectionWrapper = styled("div", props)`
   align-items: center;
   display: flex;
   flex-direction: ${({ section }) =>
-    section.attributes.reversed ? "row-reverse" : "row"};
+    section?.attributes.reversed ? "row-reverse" : "row"};
   height: 80vh;
-  margin: ${({ section }) => (section.attributes.hasSectionGap ? `5% 0` : "0")};
+  margin: ${({ section }) =>
+    section?.attributes.hasSectionGap ? `5% 0` : "0"};
   pointer-events: ${({ isInBuilder }) => (isInBuilder ? "none" : "")};
   width: 100%;
 
@@ -20,7 +25,7 @@ export const SectionWrapper = styled.div`
 
   @media screen and (max-width: 768px) {
     flex-direction: ${({ section }) =>
-      section.attributes.reversed ? "column-reverse" : "column"};
+      section?.attributes.reversed ? "column-reverse" : "column"};
     flex-wrap: nowrap;
     height: auto;
 
@@ -32,7 +37,7 @@ export const SectionWrapper = styled.div`
 
   body#force-mobile & {
     flex-direction: ${({ section }) =>
-      section.attributes.reversed ? "column-reverse" : "column"};
+      section?.attributes.reversed ? "column-reverse" : "column"};
     flex-wrap: nowrap;
     height: auto;
 
@@ -43,18 +48,19 @@ export const SectionWrapper = styled.div`
   }
 `;
 
-export const SectionContent = styled.div`
-  align-items: ${({ section }) => section.attributes.alignment?.alignItems};
-  background: ${({ section }) => section.attributes.bgColor};
-  color: ${({ section }) => section.attributes.textColor};
+export const SectionContent = styled("div", props)`
+  align-items: ${({ section }) =>
+    `${section?.attributes.alignment?.alignItems}`};
+  background: ${({ section }) => `${section?.attributes.bgColor}`};
+  color: ${({ section }) => `${section?.attributes.textColor}`};
   display: flex;
   flex-direction: column;
   height: 80%;
   justify-content: ${({ section }) =>
-    section.attributes.alignment?.justifyContent};
+    `${section?.attributes.alignment?.justifyContent}`};
   margin: 20% 10%;
   text-align: ${({ section }) =>
-    getTextAlign(section.attributes.alignment?.alignItems)};
+    `${getTextAlign(section?.attributes.alignment?.alignItems)}`};
   width: 80%;
 
   h3 {

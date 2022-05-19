@@ -13,21 +13,23 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from "vue";
+
+export default defineComponent({
   computed: {
     components() {
       return this.$store.getters.getComponents;
     },
   },
   methods: {
-    startDrag(evt, item) {
-      evt.dataTransfer.dropEffect = "move";
-      evt.dataTransfer.effectAllowed = "move";
-      evt.dataTransfer.setData("componentLabel", item);
+    startDrag(e: { dataTransfer: DataTransfer }, componentLabel: string) {
+      e.dataTransfer.dropEffect = "move";
+      e.dataTransfer.effectAllowed = "move";
+      e.dataTransfer.setData("componentLabel", componentLabel);
     },
   },
-};
+});
 </script>
 
 <style scoped>

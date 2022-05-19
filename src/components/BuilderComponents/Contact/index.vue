@@ -73,7 +73,9 @@
   </ContactWrapper>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent, PropType } from "vue";
+
 import {
   IconDribbble,
   IconInstagram,
@@ -81,10 +83,11 @@ import {
   IconMail,
   IconWorld,
 } from "@/components/common";
+import { ISection } from "@/types";
 
-import { ContactWrapper, TextWrapper } from "./style.js";
+import { ContactWrapper, TextWrapper } from "./style";
 
-export default {
+export default defineComponent({
   components: {
     ContactWrapper,
     IconDribbble,
@@ -100,8 +103,8 @@ export default {
       type: Boolean,
     },
     section: {
-      type: Object,
+      type: Object as PropType<ISection>,
     },
   },
-};
+});
 </script>

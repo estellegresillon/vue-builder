@@ -1,4 +1,4 @@
-export const getItemHeight = (columnCount) => {
+export const getItemHeight = (columnCount?: string) => {
   if (!columnCount) return;
 
   switch (columnCount) {
@@ -14,7 +14,7 @@ export const getItemHeight = (columnCount) => {
   }
 };
 
-export const getItemWidth = (columnCount) => {
+export const getItemWidth = (columnCount?: string) => {
   if (!columnCount) return;
 
   switch (columnCount) {
@@ -32,7 +32,7 @@ export const getItemWidth = (columnCount) => {
   }
 };
 
-export const getTextAlign = (alignment) => {
+export const getTextAlign = (alignment?: string) => {
   if (!alignment) return;
 
   if (alignment === "flex-start") {

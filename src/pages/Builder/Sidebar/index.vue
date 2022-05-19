@@ -9,11 +9,13 @@
   </div>
 </template>
 
-<script>
-import ComponentList from "./ComponentList";
-import Settings from "./Settings";
+<script lang="ts">
+import { defineComponent } from "vue";
 
-export default {
+import ComponentList from "./ComponentList/index.vue";
+import Settings from "./Settings/index.vue";
+
+export default defineComponent({
   components: {
     ComponentList,
     Settings,
@@ -23,7 +25,7 @@ export default {
       return this.$store.getters.getSelectedComponent;
     },
   },
-};
+});
 </script>
 
 <style scoped>

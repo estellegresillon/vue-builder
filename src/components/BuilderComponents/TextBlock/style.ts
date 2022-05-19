@@ -1,25 +1,30 @@
+import type { PropType } from "vue";
 import styled from "vue3-styled-components";
 
+import { ISection } from "@/types";
 import { getTextAlign } from "@/utils/helpers";
 
-export const TextBlockWrapper = styled.div`
+const props = { section: Object as PropType<ISection>, isInBuilder: Boolean };
+
+export const TextBlockWrapper = styled("div", props)`
   display: flex;
-  min-height: ${({ section }) => `${section.attributes.height}px`};
+  min-height: ${({ section }) => `${section?.attributes.height}px`};
   pointer-events: ${({ isInBuilder }) => (isInBuilder ? "none" : "")};
   width: 100%;
 `;
 
-export const TextBlockContent = styled.div`
-  align-items: ${({ section }) => section.attributes.alignment?.alignItems};
-  background: ${({ section }) => section.attributes.bgColor};
-  color: ${({ section }) => section.attributes.textColor};
+export const TextBlockContent = styled("div", props)`
+  align-items: ${({ section }) =>
+    `${section?.attributes.alignment?.alignItems}`};
+  background: ${({ section }) => `${section?.attributes.bgColor}`};
+  color: ${({ section }) => `${section?.attributes.textColor}`};
   display: flex;
   flex-direction: column;
   justify-content: ${({ section }) =>
-    section.attributes.alignment?.justifyContent};
+    `${section?.attributes.alignment?.justifyContent}`};
   margin: 5% 10%;
   text-align: ${({ section }) =>
-    getTextAlign(section.attributes.alignment?.alignItems)};
+    `${getTextAlign(section?.attributes.alignment?.alignItems)}`};
   width: 80%;
 
   h2 {

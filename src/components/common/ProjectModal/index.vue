@@ -4,7 +4,7 @@
       <IconClose />
     </div>
     <div class="menu-style">
-      <label htmlFor="menu">Light Menu</label>
+      <label htmlFor="menu">Transparent Menu</label>
       <input
         @change="updateTransparentMenu"
         :checked="transparentMenu === 'true'"
@@ -29,14 +29,16 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from "vue";
+
 import { saveDataInLocalStorage } from "@/utils/localStorage";
 
 import IconClose from "../Icons/IconClose.vue";
-import Input from "../Input";
-import Select from "../Select";
+import Input from "../Input/index.vue";
+import Select from "../Select/index.vue";
 
-export default {
+export default defineComponent({
   components: {
     IconClose,
     Input,
@@ -73,11 +75,11 @@ export default {
     },
   },
   methods: {
-    updateFont(e) {
+    updateFont(e: { target: HTMLInputElement }) {
       this.$store.dispatch("updateProjectFont", e.target.value);
       saveDataInLocalStorage("font", e.target.value);
     },
-    updateProjectName(e) {
+    updateProjectName(e: { target: HTMLInputElement }) {
       this.$store.dispatch("updateProjectName", e.target.value);
       saveDataInLocalStorage("project", e.target.value);
     },
@@ -87,7 +89,7 @@ export default {
       saveDataInLocalStorage("transparentMenu", newMenu);
     },
   },
-};
+});
 </script>
 
 <style scoped>

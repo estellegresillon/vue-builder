@@ -6,10 +6,12 @@
   </div>
 </template>
 
-<script>
-import Prod from "@/pages/Prod";
+<script lang="ts">
+import { defineComponent } from "vue";
 
-export default {
+import Prod from "@/pages/Prod/index.vue";
+
+export default defineComponent({
   components: {
     Prod,
   },
@@ -26,7 +28,7 @@ export default {
     const body = document.querySelector("body");
     body?.removeAttribute("id");
   },
-};
+});
 </script>
 
 <style scoped>

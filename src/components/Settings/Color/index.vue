@@ -18,20 +18,25 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { Chrome } from "@ckpack/vue-color";
 import vClickOutside from "click-outside-vue3";
+import { defineComponent, PropType } from "vue";
 
-export default {
+import { ISection } from "@/types";
+
+export default defineComponent({
   components: {
     Chrome,
   },
   props: {
     attribute: {
+      required: true,
       type: String,
     },
     selectedComponent: {
-      type: Object,
+      required: true,
+      type: Object as PropType<ISection>,
     },
   },
   data() {
@@ -57,7 +62,7 @@ export default {
     showPicker() {
       this.isPickerOpened = true;
     },
-    updateColor(e) {
+    updateColor(e: { hex: string }) {
       const newAttr = { [this.attribute]: e.hex };
 
       this.$store.dispatch("updateAttributes", {
@@ -69,7 +74,7 @@ export default {
   directives: {
     clickOutside: vClickOutside.directive,
   },
-};
+});
 </script>
 
 <style scoped>

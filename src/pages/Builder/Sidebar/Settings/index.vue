@@ -38,7 +38,9 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent, PropType } from "vue";
+
 import { IconBack } from "@/components/common";
 import {
   Alignment,
@@ -48,6 +50,7 @@ import {
   SelectNumber,
   Text,
 } from "@/components/Settings";
+import { ISection } from "@/types";
 
 import {
   CHECKBOX_SETTINGS,
@@ -56,7 +59,7 @@ import {
   TEXT_SETTINGS,
 } from "../utils";
 
-export default {
+export default defineComponent({
   components: {
     Alignment,
     Checkbox,
@@ -68,7 +71,8 @@ export default {
   },
   props: {
     selectedComponent: {
-      type: Object,
+      required: true,
+      type: Object as PropType<ISection>,
     },
   },
   computed: {
@@ -93,7 +97,7 @@ export default {
       this.$store.dispatch("selectComponent", null);
     },
   },
-};
+});
 </script>
 
 <style scoped>

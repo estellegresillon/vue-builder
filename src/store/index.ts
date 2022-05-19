@@ -7,9 +7,9 @@ import {
 } from "@/utils/localStorage";
 // import initialJson from "@/utils/initialJson";
 
-import actions from "./actions.js";
-import getters from "./getters.js";
-import mutations from "./mutations.js";
+import actions from "./actions";
+import getters from "./getters";
+import mutations from "./mutations";
 
 const store = createStore({
   state() {

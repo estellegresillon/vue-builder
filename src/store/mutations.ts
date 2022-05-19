@@ -1,5 +1,7 @@
+import { ISection, State } from "@/types";
+
 export default {
-  removeComponent(state, id) {
+  removeComponent(state: State, id: string) {
     const newJson = [...state.json].filter((section) => {
       return section.id !== id;
     });
@@ -7,29 +9,29 @@ export default {
     state.json = newJson;
     state.selectedComponent = null;
   },
-  resetJson(state) {
+  resetJson(state: State) {
     state.json = [];
     state.selectedComponent = null;
   },
-  selectComponent(state, component) {
+  selectComponent(state: State, component: ISection) {
     state.selectedComponent = component;
   },
-  setDraggedOverComponent(state, component) {
+  setDraggedOverComponent(state: State, component: ISection) {
     state.draggedOverComponent = component;
   },
-  setJson(state, payload) {
+  setJson(state: State, payload: { json: ISection[] }) {
     state.json = payload.json;
   },
-  setProjectFont(state, payload) {
+  setProjectFont(state: State, payload: string) {
     state.projectFont = payload;
   },
-  setProjectName(state, payload) {
+  setProjectName(state: State, payload: string) {
     state.projectName = payload;
   },
-  setTransparentMenu(state, payload) {
+  setTransparentMenu(state: State, payload: string) {
     state.transparentMenu = payload;
   },
-  updateAttributes(state, payload) {
+  updateAttributes(state: State, payload: ISection) {
     const { id, attributes } = payload;
     const newJson = [...state.json];
 

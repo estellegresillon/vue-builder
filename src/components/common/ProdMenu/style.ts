@@ -1,6 +1,8 @@
 import styled from "vue3-styled-components";
 
-export const ProdMenuWrapper = styled.div`
+const props = { transparentMenu: Boolean };
+
+export const ProdMenuWrapper = styled("div", props)`
   align-items: center;
   background-color: ${({ transparentMenu }) =>
     transparentMenu ? "transparent" : "white"};

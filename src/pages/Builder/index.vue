@@ -40,18 +40,19 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from "vue";
 import { uuid } from "vue-uuid";
 import draggable from "vuedraggable";
 
 import { ProdMenu } from "@/components/common";
 import initialAttributes from "@/utils/initialAttributes";
 
-import Resize from "./Resize";
-import Sidebar from "./Sidebar";
-import TopBar from "./TopBar";
+import Resize from "./Resize/index.vue";
+import Sidebar from "./Sidebar/index.vue";
+import TopBar from "./TopBar/index.vue";
 
-export default {
+export default defineComponent({
   components: {
     draggable,
     ProdMenu,
@@ -81,15 +82,15 @@ export default {
       this.dragging = false;
       this.$store.dispatch("updateJson", this.sections);
     },
-    onDrop(evt) {
-      const componentLabel = evt.dataTransfer.getData("componentLabel");
+    onDrop(e: { target: HTMLInputElement; dataTransfer: DataTransfer }) {
+      const componentLabel = e.dataTransfer.getData("componentLabel");
 
       this.$store.dispatch("setDraggedOverComponent", null);
 
       if (!componentLabel) {
         return;
       }
-      const dropEl = evt.target;
+      const dropEl = e.target;
       const items = [...this.sections];
       const index = items.findIndex((section) => section.id === dropEl.id);
       const attributes = initialAttributes[componentLabel];
@@ -111,7 +112,7 @@ export default {
       this.$store.dispatch("selectComponent", newChild);
     },
   },
-};
+});
 </script>
 
 <style scoped>

@@ -1,21 +1,28 @@
+import type { PropType } from "vue";
 import styled from "vue3-styled-components";
 
+import { ISection } from "@/types";
 import { getItemHeight, getItemWidth } from "@/utils/helpers";
 
-export const GalleryWrapper = styled.div`
+const props = { section: Object as PropType<ISection>, isInBuilder: Boolean };
+
+export const GalleryWrapper = styled("div", props)`
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
   margin: ${({ section }) =>
-    section.attributes.hasSectionGap ? `${section.attributes.colGap}% 0` : "0"};
+    section?.attributes.hasSectionGap
+      ? `${section?.attributes.colGap}% 0`
+      : "0"};
   pointer-events: ${({ isInBuilder }) => (isInBuilder ? "none" : "")};
   width: 100%;
 
   img {
     &.img-1-col {
-      height: ${({ section }) => getItemHeight(section.attributes.columns)};
+      height: ${({ section }) =>
+        `${getItemHeight(section?.attributes.columns)}`};
       margin: ${({ section }) =>
-        section.attributes.hasColGap
+        section?.attributes.hasColGap
           ? `${
               section.attributes.colGap
                 ? parseInt(section.attributes.colGap) / 2
@@ -23,13 +30,14 @@ export const GalleryWrapper = styled.div`
             }% ${section.attributes.colGap}%`
           : "0"};
       object-fit: cover;
-      width: ${({ section }) => getItemWidth(section.attributes.columns)};
+      width: ${({ section }) => `${getItemWidth(section?.attributes.columns)}`};
     }
 
     &.img-2-col {
-      height: ${({ section }) => getItemHeight(section.attributes.columns)};
+      height: ${({ section }) =>
+        `${getItemHeight(section?.attributes.columns)}`};
       margin: ${({ section }) =>
-        section.attributes.hasColGap
+        section?.attributes.hasColGap
           ? `${
               section.attributes.colGap
                 ? parseInt(section.attributes.colGap) / 2
@@ -38,11 +46,11 @@ export const GalleryWrapper = styled.div`
           : "0"};
       object-fit: cover;
       width: ${({ section }) =>
-        section.attributes.hasColGap
+        section?.attributes.hasColGap
           ? `calc(${getItemWidth(section.attributes.columns)} - 1.5 * ${
               section.attributes.colGap
             }%)`
-          : getItemWidth(section.attributes.columns)};
+          : `${getItemWidth(section?.attributes.columns)}`};
 
       &:nth-child(1n) {
         margin-right: 0%;
@@ -50,9 +58,10 @@ export const GalleryWrapper = styled.div`
     }
 
     &.img-3-col {
-      height: ${({ section }) => getItemHeight(section.attributes.columns)};
+      height: ${({ section }) =>
+        `${getItemHeight(section?.attributes.columns)}`};
       margin: ${({ section }) =>
-        section.attributes.hasColGap
+        section?.attributes.hasColGap
           ? `${
               section.attributes.colGap
                 ? parseInt(section.attributes.colGap) / 2
@@ -61,11 +70,11 @@ export const GalleryWrapper = styled.div`
           : "0"};
       object-fit: cover;
       width: ${({ section }) =>
-        section.attributes.hasColGap
-          ? `calc(${getItemWidth(section.attributes.columns)} - 1.333334 * ${
+        section?.attributes.hasColGap
+          ? `calc(${getItemWidth(section?.attributes.columns)} - 1.333334 * ${
               section.attributes.colGap
             }%)`
-          : getItemWidth(section.attributes.columns)};
+          : `${getItemWidth(section?.attributes.columns)}`};
 
       &:nth-child(1n),
       &:nth-child(2n) {
@@ -74,9 +83,10 @@ export const GalleryWrapper = styled.div`
     }
 
     &.img-4-col {
-      height: ${({ section }) => getItemHeight(section.attributes.columns)};
+      height: ${({ section }) =>
+        `${getItemHeight(section?.attributes.columns)}`};
       margin: ${({ section }) =>
-        section.attributes.hasColGap
+        section?.attributes.hasColGap
           ? `${
               section.attributes.colGap
                 ? parseInt(section.attributes.colGap) / 2
@@ -85,11 +95,11 @@ export const GalleryWrapper = styled.div`
           : "0"};
       object-fit: cover;
       width: ${({ section }) =>
-        section.attributes.hasColGap
+        section?.attributes.hasColGap
           ? `calc(${getItemWidth(section.attributes.columns)} - 1.25 * ${
               section.attributes.colGap
             }%)`
-          : getItemWidth(section.attributes.columns)};
+          : `${getItemWidth(section?.attributes.columns)}`};
 
       &:nth-child(1n),
       &:nth-child(2n),
@@ -106,7 +116,7 @@ export const GalleryWrapper = styled.div`
     img {
       height: 50vh !important;
       width: ${({ section }) =>
-        section.attributes.hasColGap ? "90%" : "100%"} !important;
+        section?.attributes.hasColGap ? "90%" : "100%"} !important;
     }
   }
 
@@ -117,7 +127,7 @@ export const GalleryWrapper = styled.div`
     img {
       height: 50vh !important;
       width: ${({ section }) =>
-        section.attributes.hasColGap ? "90%" : "100%"} !important;
+        section?.attributes.hasColGap ? "90%" : "100%"} !important;
     }
   }
 `;

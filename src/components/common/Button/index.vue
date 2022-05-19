@@ -8,8 +8,10 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from "vue";
+
+export default defineComponent({
   props: {
     color: {
       default: "blue",
@@ -22,7 +24,7 @@ export default {
       type: String,
     },
   },
-};
+});
 </script>
 
 <style scoped>

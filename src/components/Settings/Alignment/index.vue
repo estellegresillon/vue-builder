@@ -1,13 +1,16 @@
 <template>
   <AlignmentWrapper
     ><div class="attribute-name">{{ attribute }} :</div>
-    <div v-for="a in alignments" :key="a">
-      <div :class="`row ${a}`">
-        <div v-for="b in alignments" :key="b">
-          <div :class="`box ${b}`" @click="updateAlignment(a, b)">
+    <div v-for="align in alignments" :key="align">
+      <div :class="`row ${align}`">
+        <div v-for="justify in alignments" :key="justify">
+          <div
+            :class="`box ${justify}`"
+            @click="updateAlignment(align, justify)"
+          >
             <CircleWrapper
               class="circle"
-              :isSelected="alignItems === a && justifyContent === b"
+              :isSelected="alignItems === align && justifyContent === justify"
             />
           </div>
         </div>
@@ -16,16 +19,20 @@
   </AlignmentWrapper>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent, PropType } from "vue";
+
+import { ISection } from "@/types";
+
 import { AlignmentWrapper, CircleWrapper } from "./style";
 
-export default {
+export default defineComponent({
   data() {
     return {
-      alignItems: this.selectedComponent.attributes.alignment.alignItems,
+      alignItems: this.selectedComponent.attributes.alignment?.alignItems,
       alignments: ["flex-start", "center", "flex-end"],
       justifyContent:
-        this.selectedComponent.attributes.alignment.justifyContent,
+        this.selectedComponent.attributes.alignment?.justifyContent,
     };
   },
   components: {
@@ -34,16 +41,18 @@ export default {
   },
   props: {
     attribute: {
+      required: true,
       type: String,
     },
     selectedComponent: {
-      type: Object,
+      required: true,
+      type: Object as PropType<ISection>,
     },
   },
   methods: {
-    updateAlignment(a, b) {
+    updateAlignment(alignItems: string, justifyContent: string) {
       const newAttr = {
-        [this.attribute]: { alignItems: a, justifyContent: b },
+        [this.attribute]: { alignItems, justifyContent },
       };
 
       this.$store.dispatch("updateAttributes", {
@@ -52,5 +61,5 @@ export default {
       });
     },
   },
-};
+});
 </script>

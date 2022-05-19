@@ -14,10 +14,14 @@
   </GalleryWrapper>
 </template>
 
-<script>
-import { GalleryWrapper } from "./style.js";
+<script lang="ts">
+import { defineComponent, PropType } from "vue";
 
-export default {
+import { ISection } from "@/types";
+
+import { GalleryWrapper } from "./style";
+
+export default defineComponent({
   components: {
     GalleryWrapper,
   },
@@ -27,16 +31,18 @@ export default {
       type: Boolean,
     },
     section: {
-      type: Object,
+      type: Object as PropType<ISection>,
     },
   },
   computed: {
     imagesArray() {
-      return Array.from(
-        { length: this.section.attributes?.itemCount },
-        (_, i) => (i + 1).toString()
-      );
+      if (!this.section?.attributes.itemCount) {
+        return null;
+      }
+
+      const arrayLength = parseInt(this.section.attributes.itemCount);
+      return Array.from({ length: arrayLength }, (_, i) => (i + 1).toString());
     },
   },
-};
+});
 </script>

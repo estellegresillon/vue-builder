@@ -25,13 +25,18 @@
   </div>
 </template>
 
-<script>
-import Actions from "./Actions";
+<script lang="ts">
+import { defineComponent, PropType } from "vue";
 
-export default {
+import { ISection } from "@/types";
+
+import Actions from "./Actions.vue";
+
+export default defineComponent({
   props: {
     section: {
-      type: Object,
+      required: true,
+      type: Object as PropType<ISection>,
     },
   },
   components: {
@@ -41,7 +46,7 @@ export default {
     return {
       hover: false,
       initialPos: "",
-      initialSize: "",
+      initialSize: null as number | null,
     };
   },
   computed: {
@@ -66,30 +71,33 @@ export default {
     },
   },
   methods: {
-    dragging(e) {
-      const resizable = this.$refs.refContainer;
+    dragging(e: { clientY: string }) {
+      const resizable = this.$refs.refContainer as HTMLFormElement;
 
       if (this.initialSize && this.initialPos) {
-        resizable.style.height = `${
-          this.initialSize + e.clientY - this.initialPos
-        }px`;
+        console.log(e, resizable, "hello");
+        // resizable.style.height = `${
+        //   this.initialSize + e.clientY - this.initialPos
+        // }px`;
       }
     },
     onDragEnd() {
+      const resizable = this.$refs.refContainer as HTMLFormElement;
+
       const id = this.section.id;
-      const height = this.$refs.refContainer.style.height.slice(0, -2);
+      const height = resizable.style.height.slice(0, -2);
       this.$store.dispatch("updateAttributes", { id, attributes: { height } });
     },
     onDragLeave() {
       this.$store.dispatch("setDraggedOverComponent", null);
     },
-    onDragOver(e) {
+    onDragOver(e: { target: HTMLInputElement }) {
       if (!this.selectedComponent) {
         const selectedItem = e.target;
         this.$store.dispatch("setDraggedOverComponent", selectedItem.id);
       }
     },
-    onDragStart(e) {
+    onDragStart(e: { clientY: string; dataTransfer: DataTransfer }) {
       if (!this.dragImage) {
         return;
       }
@@ -98,7 +106,7 @@ export default {
 
       e.dataTransfer.dropEffect = "move";
       e.dataTransfer.effectAllowed = "move";
-      const resizable = this.$refs.refContainer;
+      const resizable = this.$refs.refContainer as HTMLFormElement;
 
       this.initialPos = e.clientY;
       this.initialSize = resizable.offsetHeight;
@@ -107,7 +115,7 @@ export default {
       this.$store.dispatch("selectComponent", this.section);
     },
   },
-};
+});
 </script>
 
 <style scoped>

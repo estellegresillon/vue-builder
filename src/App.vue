@@ -6,14 +6,15 @@
   </ThemeProvider>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from "vue";
 import { ThemeProvider } from "vue3-styled-components";
 
-export default {
+export default defineComponent({
   components: {
     ThemeProvider,
   },
-};
+});
 </script>
 
 <style>

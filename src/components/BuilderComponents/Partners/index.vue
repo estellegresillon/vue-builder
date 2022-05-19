@@ -17,10 +17,14 @@
   </PartnersWrapper>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent, PropType } from "vue";
+
+import { ISection } from "@/types";
+
 import { PartnersWrapper } from "./style";
 
-export default {
+export default defineComponent({
   components: {
     PartnersWrapper,
   },
@@ -30,16 +34,21 @@ export default {
       type: Boolean,
     },
     section: {
-      type: Object,
+      type: Object as PropType<ISection>,
     },
   },
   computed: {
     partnersArray() {
-      return Array.from(
-        { length: this.section.attributes?.itemCount },
-        (_, i) => (i + 100).toString()
+      if (!this.section?.attributes.itemCount) {
+        return null;
+      }
+
+      const arrayLength = parseInt(this.section.attributes.itemCount);
+
+      return Array.from({ length: arrayLength }, (_, i) =>
+        (i + 100).toString()
       );
     },
   },
-};
+});
 </script>

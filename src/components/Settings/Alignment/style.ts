@@ -1,5 +1,7 @@
 import styled from "vue3-styled-components";
 
+const props = { isSelected: Boolean };
+
 export const AlignmentWrapper = styled.div`
   margin-bottom: 20px;
 
@@ -26,7 +28,7 @@ export const AlignmentWrapper = styled.div`
   }
 `;
 
-export const CircleWrapper = styled.div`
+export const CircleWrapper = styled("div", props)`
   background-color: ${({ isSelected }) =>
     isSelected ? "#d40c0c" : "lightgray"};
   border-radius: 50%;

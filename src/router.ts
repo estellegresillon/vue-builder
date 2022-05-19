@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-import Builder from "./pages/Builder";
-import Prod from "./pages/Prod";
-import NotFound from "./pages/NotFound";
+import Builder from "./pages/Builder/index.vue";
+import Prod from "./pages/Prod/index.vue";
+import NotFound from "./pages/NotFound/index.vue";
 
 const router = createRouter({
   history: createWebHistory(),

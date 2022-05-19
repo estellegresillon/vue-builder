@@ -10,10 +10,12 @@
   </ProdMenuWrapper>
 </template>
 
-<script>
-import { Item, ProdMenuWrapper } from "./style.js";
+<script lang="ts">
+import { defineComponent } from "vue";
 
-export default {
+import { Item, ProdMenuWrapper } from "./style";
+
+export default defineComponent({
   components: {
     Item,
     ProdMenuWrapper,
@@ -26,5 +28,5 @@ export default {
       return this.$store.getters.getTransparentMenu;
     },
   },
-};
+});
 </script>

@@ -2,14 +2,14 @@ import { createApp } from "vue";
 
 import router from "./router";
 import store from "./store";
-import App from "./App";
+import App from "./App.vue";
 
-import Contact from "./components/BuilderComponents/Contact";
-import Gallery from "./components/BuilderComponents/Gallery";
-import Hero from "./components/BuilderComponents/Hero";
-import Partners from "./components/BuilderComponents/Partners";
-import Section from "./components/BuilderComponents/Section";
-import TextBlock from "./components/BuilderComponents/TextBlock";
+import Contact from "./components/BuilderComponents/Contact/index.vue";
+import Gallery from "./components/BuilderComponents/Gallery/index.vue";
+import Hero from "./components/BuilderComponents/Hero/index.vue";
+import Partners from "./components/BuilderComponents/Partners/index.vue";
+import Section from "./components/BuilderComponents/Section/index.vue";
+import TextBlock from "./components/BuilderComponents/TextBlock/index.vue";
 
 import { IconBack, ProdMenu } from "./components/common";
 

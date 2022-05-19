@@ -1,4 +1,4 @@
-export const getDataFromLocalStorage = (key) => {
+export const getDataFromLocalStorage = (key: string) => {
   return localStorage.getItem(key);
 };
 
@@ -7,10 +7,10 @@ export const getDocumentFromLocalStorage = () => {
   return json ? JSON.parse(json) : [];
 };
 
-export const saveDataInLocalStorage = (key, value) => {
+export const saveDataInLocalStorage = (key: string, value: string) => {
   localStorage.setItem(key, value);
 };
 
-export const saveDocumentInLocalStorage = (json) => {
+export const saveDocumentInLocalStorage = (json: object) => {
   localStorage.setItem("builderJson", JSON.stringify(json));
 };

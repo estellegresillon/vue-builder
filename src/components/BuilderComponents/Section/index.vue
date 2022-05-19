@@ -13,12 +13,15 @@
   </SectionWrapper>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent, PropType } from "vue";
+
 import { Divider } from "@/components/common";
+import { ISection } from "@/types";
 
-import { SectionContent, SectionWrapper } from "./style.js";
+import { SectionContent, SectionWrapper } from "./style";
 
-export default {
+export default defineComponent({
   components: {
     Divider,
     SectionContent,
@@ -30,8 +33,8 @@ export default {
       type: Boolean,
     },
     section: {
-      type: Object,
+      type: Object as PropType<ISection>,
     },
   },
-};
+});
 </script>

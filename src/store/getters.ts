@@ -1,23 +1,25 @@
+import { State } from "@/types";
+
 export default {
-  getComponents(state) {
+  getComponents(state: State) {
     return state.components;
   },
-  getDraggedOverComponent(state) {
+  getDraggedOverComponent(state: State) {
     return state.draggedOverComponent;
   },
-  getJson(state) {
+  getJson(state: State) {
     return state.json;
   },
-  getProjectFont(state) {
+  getProjectFont(state: State) {
     return state.projectFont;
   },
-  getProjectName(state) {
+  getProjectName(state: State) {
     return state.projectName;
   },
-  getSelectedComponent(state) {
+  getSelectedComponent(state: State) {
     return state.selectedComponent;
   },
-  getTransparentMenu(state) {
+  getTransparentMenu(state: State) {
     return state.transparentMenu;
   },
 };

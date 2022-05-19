@@ -1,12 +1,17 @@
+import type { PropType } from "vue";
 import styled from "vue3-styled-components";
 
-export const ContactWrapper = styled.div`
+import { ISection } from "@/types";
+
+const props = { section: Object as PropType<ISection>, isInBuilder: Boolean };
+
+export const ContactWrapper = styled("div", props)`
   align-items: center;
-  background-color: ${({ section }) => section.attributes.bgColor};
+  background-color: ${({ section }) => `${section?.attributes.bgColor}`};
   display: flex;
   flex-direction: ${({ section }) =>
-    section.attributes.reversed ? "row-reverse" : "row"};
-  min-height: ${({ section }) => `${section.attributes.height}px`};
+    section?.attributes.reversed ? "row-reverse" : "row"};
+  min-height: ${({ section }) => `${section?.attributes.height}px`};
   justify-content: space-evenly;
   padding: 0 10%;
   pointer-events: ${({ isInBuilder }) => (isInBuilder ? "none" : "")};
@@ -29,7 +34,7 @@ export const ContactWrapper = styled.div`
 
   @media screen and (max-width: 768px) {
     flex-direction: ${({ section }) =>
-      section.attributes.reversed ? "column-reverse" : "column"};
+      section?.attributes.reversed ? "column-reverse" : "column"};
     padding: 5% 10%;
 
     .photo-wrapper {
@@ -40,7 +45,7 @@ export const ContactWrapper = styled.div`
 
   body#force-mobile & {
     flex-direction: ${({ section }) =>
-      section.attributes.reversed ? "column-reverse" : "column"};
+      section?.attributes.reversed ? "column-reverse" : "column"};
     padding: 20% 10%;
 
     .photo-wrapper {
@@ -50,8 +55,8 @@ export const ContactWrapper = styled.div`
   }
 `;
 
-export const TextWrapper = styled.div`
-  color: ${({ section }) => section.attributes.textColor};
+export const TextWrapper = styled("div", props)`
+  color: ${({ section }) => `${section?.attributes.textColor}`};
   padding: 5%;
   width: 40%;
 
@@ -73,7 +78,7 @@ export const TextWrapper = styled.div`
     width: 100%;
 
     a {
-      color: ${({ section }) => section.attributes.textColor};
+      color: ${({ section }) => `${section?.attributes.textColor}`};
 
       &:hover {
         opacity: 0.5;

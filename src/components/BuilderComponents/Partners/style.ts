@@ -1,9 +1,14 @@
+import type { PropType } from "vue";
 import styled from "vue3-styled-components";
 
-export const PartnersWrapper = styled.div`
+import { ISection } from "@/types";
+
+const props = { section: Object as PropType<ISection>, isInBuilder: Boolean };
+
+export const PartnersWrapper = styled("div", props)`
   display: flex;
   justify-content: space-evenly;
-  min-height: ${({ section }) => `${section.attributes.height}px`};
+  min-height: ${({ section }) => `${section?.attributes.height}px`};
   opacity: 0.3;
   padding: 0 10%;
   pointer-events: ${({ isInBuilder }) => (isInBuilder ? "none" : "")};
@@ -13,7 +18,7 @@ export const PartnersWrapper = styled.div`
     align-items: center;
     display: flex;
     justify-content: center;
-    width: ${({ section }) => `calc(100% / ${section.attributes.itemCount})`};
+    width: ${({ section }) => `calc(100% / ${section?.attributes.itemCount})`};
 
     img {
       height: 80px;

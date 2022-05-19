@@ -13,19 +13,24 @@
   </div>
 </template>
 
-<script>
-import { Select } from "@/components/common";
+<script lang="ts">
+import { defineComponent, PropType } from "vue";
 
-export default {
+import { Select } from "@/components/common";
+import { ISection } from "@/types";
+
+export default defineComponent({
   components: {
     Select,
   },
   props: {
     attribute: {
+      required: true,
       type: String,
     },
     selectedComponent: {
-      type: Object,
+      required: true,
+      type: Object as PropType<ISection>,
     },
   },
   data() {
@@ -53,7 +58,7 @@ export default {
     },
   },
   methods: {
-    updateValue(e) {
+    updateValue(e: { target: HTMLInputElement }) {
       const newAttr = { [this.attribute]: e.target.value };
 
       this.$store.dispatch("updateAttributes", {
@@ -62,7 +67,7 @@ export default {
       });
     },
   },
-};
+});
 </script>
 
 <style scoped>

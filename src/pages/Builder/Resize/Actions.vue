@@ -5,17 +5,21 @@
   </div>
 </template>
 
-<script>
-import { IconRemove, IconSettings } from "@/components/common";
+<script lang="ts">
+import { defineComponent, PropType } from "vue";
 
-export default {
+import { IconRemove, IconSettings } from "@/components/common";
+import { ISection } from "@/types";
+
+export default defineComponent({
   components: {
     IconRemove,
     IconSettings,
   },
   props: {
     section: {
-      type: Object,
+      required: true,
+      type: Object as PropType<ISection>,
     },
   },
   methods: {
@@ -26,7 +30,7 @@ export default {
       this.$store.dispatch("removeComponent", this.section.id);
     },
   },
-};
+});
 </script>
 
 <style scoped>

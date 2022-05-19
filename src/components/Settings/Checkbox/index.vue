@@ -11,19 +11,25 @@
   ></CheckboxWrapper>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent, PropType } from "vue";
+
+import { ISection } from "@/types";
+
 import { CheckboxWrapper } from "./style";
 
-export default {
+export default defineComponent({
   components: {
     CheckboxWrapper,
   },
   props: {
     attribute: {
+      required: true,
       type: String,
     },
     selectedComponent: {
-      type: Object,
+      required: true,
+      type: Object as PropType<ISection>,
     },
   },
   data() {
@@ -51,5 +57,5 @@ export default {
       });
     },
   },
-};
+});
 </script>

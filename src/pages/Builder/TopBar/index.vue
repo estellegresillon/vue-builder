@@ -30,7 +30,9 @@
   <MobilePreview v-if="isMobilePreviewOpened" :onClose="hideMobilePreview" />
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from "vue";
+
 import {
   IconClean,
   IconSave,
@@ -39,11 +41,12 @@ import {
   Notification,
   ProjectModal,
 } from "@/components/common";
+import { ISection } from "@/types";
 import { saveDocumentInLocalStorage } from "@/utils/localStorage";
 
 import { Item, TopBarWrapper } from "./style";
 
-export default {
+export default defineComponent({
   components: {
     IconClean,
     IconSave,
@@ -59,11 +62,11 @@ export default {
       isMobilePreviewOpened: false,
       isProjectModalOpened: false,
       isSaved: false,
-      timer: null,
+      timer: null as any,
     };
   },
   computed: {
-    json() {
+    json(): ISection[] {
       return this.$store.getters.getJson;
     },
   },
@@ -102,5 +105,5 @@ export default {
   unmounted() {
     clearTimeout(this.timer);
   },
-};
+});
 </script>

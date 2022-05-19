@@ -4,7 +4,9 @@
   </router-link>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from "vue";
+
 import styled from "vue3-styled-components";
 
 const Wrapper = styled.div`
@@ -33,9 +35,9 @@ const Wrapper = styled.div`
   }
 `;
 
-export default {
+export default defineComponent({
   components: {
     Wrapper,
   },
-};
+});
 </script>

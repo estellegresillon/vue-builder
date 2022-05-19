@@ -15,12 +15,15 @@
   </HeroWrapper>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent, PropType } from "vue";
+
 import { Button } from "@/components/common";
+import { ISection } from "@/types";
 
 import { HeroWrapper } from "./style";
 
-export default {
+export default defineComponent({
   components: {
     Button,
     HeroWrapper,
@@ -31,8 +34,8 @@ export default {
       type: Boolean,
     },
     section: {
-      type: Object,
+      type: Object as PropType<ISection>,
     },
   },
-};
+});
 </script>

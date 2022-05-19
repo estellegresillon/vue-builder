@@ -12,12 +12,15 @@
   </TextBlockWrapper>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent, PropType } from "vue";
+
 import { Divider } from "@/components/common";
+import { ISection } from "@/types";
 
-import { TextBlockContent, TextBlockWrapper } from "./style.js";
+import { TextBlockContent, TextBlockWrapper } from "./style";
 
-export default {
+export default defineComponent({
   components: {
     Divider,
     TextBlockContent,
@@ -29,8 +32,8 @@ export default {
       type: Boolean,
     },
     section: {
-      type: Object,
+      type: Object as PropType<ISection>,
     },
   },
-};
+});
 </script>

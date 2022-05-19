@@ -20,12 +20,14 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from "vue";
+
 import { getDocumentFromLocalStorage } from "@/utils/localStorage";
 
-import GoBackButton from "./GoBackButton";
+import GoBackButton from "./GoBackButton.vue";
 
-export default {
+export default defineComponent({
   components: {
     GoBackButton,
   },
@@ -43,7 +45,7 @@ export default {
       return window.location.pathname === "/prod";
     },
   },
-};
+});
 </script>
 
 <style scoped>
