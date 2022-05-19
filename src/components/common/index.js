@@ -1,6 +1,7 @@
 export { default as Button } from "./Button";
 export { default as Divider } from "./Divider";
 export { default as Input } from "./Input";
+export { default as MobilePreview } from "./MobilePreview";
 export { default as Notification } from "./Notification";
 export { default as ProdMenu } from "./ProdMenu";
 export { default as ProjectModal } from "./ProjectModal";

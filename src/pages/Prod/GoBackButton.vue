@@ -1,6 +1,6 @@
 <template>
   <router-link to="/">
-    <Wrapper>Go back to builder</Wrapper>
+    <Wrapper><icon-back /> Go back to builder</Wrapper>
   </router-link>
 </template>
 

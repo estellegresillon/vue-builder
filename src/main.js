@@ -11,9 +11,13 @@ import Partners from "./components/BuilderComponents/Partners";
 import Section from "./components/BuilderComponents/Section";
 import TextBlock from "./components/BuilderComponents/TextBlock";
 
+import { IconBack, ProdMenu } from "./components/common";
+
 createApp(App)
   .use(router)
   .use(store)
+  .component("icon-back", IconBack)
+  .component("prod-menu", ProdMenu)
   .component("builder-contact", Contact)
   .component("builder-gallery", Gallery)
   .component("builder-hero", Hero)

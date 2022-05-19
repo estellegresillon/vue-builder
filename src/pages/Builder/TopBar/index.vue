@@ -8,23 +8,27 @@
         </router-link>
       </Item>
       <Item @click="saveJson">
-        <span class="mobile-link"> Mobile </span> /
+        <span class="mobile-link" @click.stop="showMobilePreview">
+          Mobile
+        </span>
+        /
         <router-link class="desktop-link" to="/prod">
           Live preview
         </router-link>
       </Item>
     </div>
     <div class="actions">
-      <Item class="action-button" @click="showModal"
+      <Item class="action-button" @click="showProjectModal"
         ><IconSettings /> Customize
       </Item>
-      <ProjectModal v-if="isModalOpened" :onClose="closeModal" />
+      <ProjectModal v-if="isProjectModalOpened" :onClose="closeProjectModal" />
       <Item class="action-button" @click="saveJson"><IconSave /> Save </Item>
       <Item class="action-button" @click="resetJson"
         ><IconClean /> Start over
       </Item>
     </div>
   </TopBarWrapper>
+  <MobilePreview v-if="isMobilePreviewOpened" :onClose="hideMobilePreview" />
 </template>
 
 <script>
@@ -32,6 +36,7 @@ import {
   IconClean,
   IconSave,
   IconSettings,
+  MobilePreview,
   ProjectModal,
 } from "@/components/common";
 import { saveDocumentInLocalStorage } from "@/utils/localStorage";
@@ -44,12 +49,14 @@ export default {
     IconSave,
     IconSettings,
     Item,
+    MobilePreview,
     ProjectModal,
     TopBarWrapper,
   },
   data() {
     return {
-      isModalOpened: false,
+      isProjectModalOpened: false,
+      isMobilePreviewOpened: false,
     };
   },
   computed: {
@@ -58,8 +65,8 @@ export default {
     },
   },
   methods: {
-    closeModal() {
-      this.isModalOpened = false;
+    closeProjectModal() {
+      this.isProjectModalOpened = false;
     },
     resetJson() {
       this.$store.dispatch("resetJson");
@@ -67,8 +74,14 @@ export default {
     saveJson() {
       saveDocumentInLocalStorage(this.json);
     },
-    showModal() {
-      this.isModalOpened = true;
+    showMobilePreview() {
+      this.isMobilePreviewOpened = true;
+    },
+    showProjectModal() {
+      this.isProjectModalOpened = true;
+    },
+    hideMobilePreview() {
+      this.isMobilePreviewOpened = false;
     },
   },
 };

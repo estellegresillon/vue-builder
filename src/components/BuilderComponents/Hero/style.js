@@ -40,6 +40,8 @@ export const HeroWrapper = styled.div`
   }
 
   body#force-mobile & {
+    height: auto;
+
     h1 {
       font-size: 42px;
     }

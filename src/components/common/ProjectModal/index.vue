@@ -33,10 +33,7 @@
 import IconClose from "../Icons/IconClose.vue";
 import Input from "../Input";
 import Select from "../Select";
-import {
-  getDataFromLocalStorage,
-  saveDataInLocalStorage,
-} from "@/utils/localStorage";
+import { saveDataInLocalStorage } from "@/utils/localStorage";
 
 export default {
   components: {
@@ -65,13 +62,13 @@ export default {
   },
   computed: {
     projectFont() {
-      return getDataFromLocalStorage("font") || "Gilroy";
+      return this.$store.getters.getProjectFont;
     },
     projectName() {
-      return getDataFromLocalStorage("project") || "Project Name";
+      return this.$store.getters.getProjectName;
     },
     transparentMenu() {
-      return getDataFromLocalStorage("transparentMenu");
+      return this.$store.getters.getTransparentMenu;
     },
   },
   methods: {
@@ -85,7 +82,6 @@ export default {
     },
     updateTransparentMenu() {
       const newMenu = this.transparentMenu === "true" ? "false" : "true";
-      console.log(this.transparentMenu === "true", "newvlaue");
       this.$store.dispatch("updateTransparentMenu", newMenu);
       saveDataInLocalStorage("transparentMenu", newMenu);
     },

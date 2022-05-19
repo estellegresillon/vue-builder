@@ -5,7 +5,7 @@
       'font-family': projectFont,
     }"
   >
-    <ProdMenu />
+    <prod-menu />
     <div v-if="hasSections">
       <div v-for="section in sections" :key="section.id">
         <component
@@ -16,12 +16,11 @@
       </div>
     </div>
     <h3 v-else>Create your page in the builder.</h3>
-    <GoBackButton />
+    <GoBackButton v-if="showGoBackButton" />
   </div>
 </template>
 
 <script>
-import { ProdMenu } from "@/components/common";
 import { getDocumentFromLocalStorage } from "@/utils/localStorage";
 
 import GoBackButton from "./GoBackButton";
@@ -29,17 +28,19 @@ import GoBackButton from "./GoBackButton";
 export default {
   components: {
     GoBackButton,
-    ProdMenu,
   },
   computed: {
+    hasSections() {
+      return getDocumentFromLocalStorage().length > 0;
+    },
     projectFont() {
       return this.$store.getters.getProjectFont;
     },
     sections() {
       return getDocumentFromLocalStorage();
     },
-    hasSections() {
-      return getDocumentFromLocalStorage().length > 0;
+    showGoBackButton() {
+      return window.location.pathname === "/prod";
     },
   },
 };
