@@ -4,6 +4,8 @@ Page builder made with Vue's Option API, Vuex and Typescript.
 
 Libraries used : vue-router, vue3-styled-components, vuedraggable.
 
+See it live : https://builder.estellegresillon.fr/
+
 ## Key goals :
 
 - Discover Vue 3 and build a project structure with the Option API
