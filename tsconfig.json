@@ -1,47 +1,24 @@
 {
   "compilerOptions": {
-    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
-    "forceConsistentCasingInFileNames": true,
-    "jsx": "react",
-    "lib": ["es6", "dom", "es2015.promise"],
+    "esModuleInterop": true,
+    "lib": ["dom", "esnext"],
     "module": "esnext",
     "moduleResolution": "node",
-    "noUnusedLocals": true,
-    "outDir": "build/dist",
-    "rootDir": "src",
-    "sourceMap": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "target": "es5",
-    "skipLibCheck": true,
-    "strict": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
     "noEmit": true,
+    "noImplicitAny": true,
+    "noImplicitOverride": true,
+    "outDir": "build/dist",
     "paths": {
       "@/*": ["src/*"]
-    }
+    },
+    "resolveJsonModule": true,
+    "rootDir": "src",
+    "sourceMap": true,
+    "strict": true,
+    "target": "esnext"
   },
-  "exclude": [
-    "build",
-    "scripts",
-    "acceptance-tests",
-    "webpack",
-    "jest",
-    "src/setupTests.ts",
-    "node_modules",
-    "obj",
-    "**/*.spec.ts"
-  ],
-  "include": [
-    "src",
-    "src/**/*.ts",
-    "src/**/*jts",
-    "src/**/*.vue",
-    "@types/**/*.d.ts",
-    "node_modules/axios",
-    "node_modules/redux-thunk"
-  ]
+  "exclude": ["dist", "node_modules", "**/*.spec.ts"],
+  "include": ["src", "src/**/*.ts", "src/**/*.vue"]
 }

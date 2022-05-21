@@ -8,6 +8,7 @@ const props = { section: Object as PropType<ISection>, isInBuilder: Boolean };
 
 export const SectionWrapper = styled("div", props)`
   align-items: center;
+  background: ${({ section }) => `${section?.attributes.bgColor}`};
   display: flex;
   flex-direction: ${({ section }) =>
     section?.attributes.reversed ? "row-reverse" : "row"};
@@ -51,7 +52,6 @@ export const SectionWrapper = styled("div", props)`
 export const SectionContent = styled("div", props)`
   align-items: ${({ section }) =>
     `${section?.attributes.alignment?.alignItems}`};
-  background: ${({ section }) => `${section?.attributes.bgColor}`};
   color: ${({ section }) => `${section?.attributes.textColor}`};
   display: flex;
   flex-direction: column;

@@ -23,7 +23,7 @@ import { Chrome } from "@ckpack/vue-color";
 import vClickOutside from "click-outside-vue3";
 import { defineComponent, PropType } from "vue";
 
-import { ISection } from "@/types";
+import { Dictionary, ISection } from "@/types";
 
 export default defineComponent({
   components: {
@@ -47,7 +47,7 @@ export default defineComponent({
         bgColor: "BG color",
         buttonColor: "Button color",
         textColor: "Text color",
-      },
+      } as Dictionary<string>,
     };
   },
   computed: {

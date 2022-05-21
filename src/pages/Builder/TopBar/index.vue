@@ -24,6 +24,9 @@
       <Item class="action-button" @click="resetJson"
         ><IconClean /> Start over
       </Item>
+      <Item class="action-button" @click="useTemplate"
+        ><IconMagic /> Use a template
+      </Item>
     </div>
   </TopBarWrapper>
   <Notification v-if="isSaved" text="Successfully saved !" />
@@ -35,6 +38,7 @@ import { defineComponent } from "vue";
 
 import {
   IconClean,
+  IconMagic,
   IconSave,
   IconSettings,
   MobilePreview,
@@ -43,12 +47,14 @@ import {
 } from "@/components/common";
 import { ISection } from "@/types";
 import { saveDocumentInLocalStorage } from "@/utils/localStorage";
+import template from "@/utils/predefinedJson";
 
 import { Item, TopBarWrapper } from "./style";
 
 export default defineComponent({
   components: {
     IconClean,
+    IconMagic,
     IconSave,
     IconSettings,
     Item,
@@ -100,6 +106,9 @@ export default defineComponent({
       this.timer = setTimeout(() => {
         this.isSaved = false;
       }, 4000);
+    },
+    useTemplate() {
+      this.$store.dispatch("updateJson", template);
     },
   },
   unmounted() {

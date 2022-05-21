@@ -21,26 +21,28 @@
       @dragend="onDragEnd"
       @dragstart.stop="onDragStart"
     />
-    <div v-if="draggedOverComponent === section.id" class="drop-placeholder" />
+    <Placeholder v-if="draggedOverComponent === section.id" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
 
+import { Placeholder } from "@/components/common";
 import { ISection } from "@/types";
 
 import Actions from "./Actions.vue";
 
 export default defineComponent({
+  components: {
+    Actions,
+    Placeholder,
+  },
   props: {
     section: {
       required: true,
       type: Object as PropType<ISection>,
     },
-  },
-  components: {
-    Actions,
   },
   data() {
     return {
@@ -158,14 +160,5 @@ export default defineComponent({
   height: 16px;
   position: absolute;
   width: 16px;
-}
-
-.drop-placeholder {
-  background: #e8f4ff;
-  border: 1px solid #5ed2ff;
-  border-radius: 5px;
-  height: 200px;
-  margin: 5px;
-  width: calc(100% - 12px);
 }
 </style>

@@ -1,3 +1,6 @@
+export interface Dictionary<T> {
+  [key: string]: T;
+}
 export interface State {
   components: string[];
   draggedOverComponent: ISection | null;
@@ -12,18 +15,8 @@ export interface ISection {
   attributes: IAttributes;
   componentLabel: string;
   componentName: string;
-  id: string;
+  id?: string;
 }
-
-export type ChildrenProps = {
-  sInBuilder: boolean;
-  section: ISection;
-  resizeRef: any;
-};
-
-export type ComponentProps = any & {
-  componentName: string;
-};
 
 export interface IAlignment {
   alignItems: string;
@@ -51,5 +44,5 @@ export interface IAttributes {
   subtitle?: string;
   textColor?: string;
   title?: string;
-  [attributeKey: string]: string | boolean | IAlignment | undefined;
+  [key: string]: string | boolean | IAlignment | undefined;
 }

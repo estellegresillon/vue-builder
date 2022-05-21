@@ -34,6 +34,7 @@
             </div>
           </template>
         </draggable>
+        <Placeholder v-if="!selectedComponent && !draggedOverComponent" />
       </div>
       <h3 v-else>Add your first element.</h3>
     </div>
@@ -45,7 +46,7 @@ import { defineComponent } from "vue";
 import { uuid } from "vue-uuid";
 import draggable from "vuedraggable";
 
-import { ProdMenu } from "@/components/common";
+import { Placeholder, ProdMenu } from "@/components/common";
 import initialAttributes from "@/utils/initialAttributes";
 
 import Resize from "./Resize/index.vue";
@@ -55,6 +56,7 @@ import TopBar from "./TopBar/index.vue";
 export default defineComponent({
   components: {
     draggable,
+    Placeholder,
     ProdMenu,
     Resize,
     Sidebar,
@@ -67,6 +69,9 @@ export default defineComponent({
     };
   },
   computed: {
+    draggedOverComponent() {
+      return this.$store.getters.getDraggedOverComponent;
+    },
     hasSections() {
       return this.$store.getters.getJson.length > 0;
     },
@@ -75,6 +80,9 @@ export default defineComponent({
     },
     sections() {
       return this.$store.getters.getJson;
+    },
+    selectedComponent() {
+      return this.$store.getters.getSelectedComponent;
     },
   },
   methods: {
@@ -96,9 +104,9 @@ export default defineComponent({
       const attributes = initialAttributes[componentLabel];
 
       const newChild = {
+        ...attributes,
         componentLabel,
         componentName: attributes.componentName,
-        attributes: { ...attributes },
         id: uuid.v1(),
       };
 
@@ -128,9 +136,8 @@ export default defineComponent({
   align-items: center;
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 270px);
+  height: 100%;
   overflow: scroll;
-  padding-bottom: 200px;
   position: relative;
   width: 100%;
   z-index: 0;

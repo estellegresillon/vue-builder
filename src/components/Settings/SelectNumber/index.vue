@@ -17,7 +17,7 @@
 import { defineComponent, PropType } from "vue";
 
 import { Select } from "@/components/common";
-import { ISection } from "@/types";
+import { Dictionary, ISection } from "@/types";
 
 export default defineComponent({
   components: {
@@ -38,7 +38,7 @@ export default defineComponent({
       name: {
         columns: "columns",
         itemCount: "number of items",
-      },
+      } as Dictionary<string>,
       options: {
         columns: Array.from({ length: 4 }, (_, i) => (i + 1).toString()),
         itemCount: Array.from(

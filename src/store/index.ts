@@ -5,7 +5,6 @@ import {
   getDataFromLocalStorage,
   getDocumentFromLocalStorage,
 } from "@/utils/localStorage";
-// import initialJson from "@/utils/initialJson";
 
 import actions from "./actions";
 import getters from "./getters";
@@ -18,7 +17,7 @@ const store = createStore({
       draggedOverComponent: null,
       json: getDocumentFromLocalStorage(),
       projectFont: getDataFromLocalStorage("font") || "Gilroy",
-      projectName: getDataFromLocalStorage("project") || "Project Name",
+      projectName: getDataFromLocalStorage("project") || "Vue Buidler",
       selectedComponent: null,
       transparentMenu: getDataFromLocalStorage("transparentMenu") || "true",
     };

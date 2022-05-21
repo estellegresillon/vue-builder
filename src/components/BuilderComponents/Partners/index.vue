@@ -43,7 +43,7 @@ export default defineComponent({
         return null;
       }
 
-      const arrayLength = parseInt(this.section.attributes.itemCount);
+      const arrayLength = parseInt(this.section.attributes.itemCount as string);
 
       return Array.from({ length: arrayLength }, (_, i) =>
         (i + 100).toString()

@@ -14,7 +14,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
 
-import { ISection } from "@/types";
+import { Dictionary, ISection } from "@/types";
 
 import { CheckboxWrapper } from "./style";
 
@@ -38,7 +38,7 @@ export default defineComponent({
         hasColGap: "Column gap",
         hasSectionGap: "Section gap",
         reversed: "Reversed layout",
-      },
+      } as Dictionary<string>,
     };
   },
   computed: {

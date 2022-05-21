@@ -7,6 +7,7 @@ import { getTextAlign } from "@/utils/helpers";
 const props = { section: Object as PropType<ISection>, isInBuilder: Boolean };
 
 export const TextBlockWrapper = styled("div", props)`
+  background-color: ${({ section }) => `${section?.attributes.bgColor}`};
   display: flex;
   min-height: ${({ section }) => `${section?.attributes.height}px`};
   pointer-events: ${({ isInBuilder }) => (isInBuilder ? "none" : "")};
@@ -16,7 +17,6 @@ export const TextBlockWrapper = styled("div", props)`
 export const TextBlockContent = styled("div", props)`
   align-items: ${({ section }) =>
     `${section?.attributes.alignment?.alignItems}`};
-  background: ${({ section }) => `${section?.attributes.bgColor}`};
   color: ${({ section }) => `${section?.attributes.textColor}`};
   display: flex;
   flex-direction: column;
